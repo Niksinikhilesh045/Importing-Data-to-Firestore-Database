@@ -32,9 +32,9 @@ project = qwiklabs-gcp-44776a13dea667a6
 
 step 3. Setting up Firestore in Google cloud 
 
-     1.In the Cloud Console, go to the Navigation menu and select Firestore.
+1.In the Cloud Console, go to the Navigation menu and select Firestore.
 
-    2.Click the Select Native Mode button.
+2.Click the Select Native Mode button.
 
 Certainly:
 
@@ -79,15 +79,15 @@ An example package.json is shown below:
 
         }
     
-    Run the following command to do so:
+Run the following command to do so:
 
         npm install @google-cloud/firestore
 
-    To enable the app to write logs to Cloud Logging, install an additional module:
+To enable the app to write logs to Cloud Logging, install an additional module:
 
         npm install @google-cloud/logging
     
-    After successful completion of the command, the package.json will be automatically updated to include the new peer dependencies, and will look like this.
+ After successful completion of the command, the package.json will be automatically updated to include the new peer dependencies, and will look like this.
 
         ...
         "dependencies": {
@@ -95,7 +95,8 @@ An example package.json is shown below:
           "@google-cloud/logging": "^10.3.1",
           "csv-parse": "^4.4.5"
         }
-        Now it's time to take a look at the script that reads the CSV file of customers and writes one record in Firestore for each line in the         CSV file. Patrick's original application is shown below:
+	
+ Now it's time to take a look at the script that reads the CSV file of customers and writes one record in Firestore for each line in the         CSV file. Patrick's original application is shown below:
 
         const { promisify } = require("util");
         const parse = promisify(require("csv-parse"));
@@ -125,26 +126,25 @@ An example package.json is shown below:
         }
         importCsv(process.argv[2]).catch((e) => console.error(e));
 
-    It takes the output from the input CSV file and imports it into the legacy database. Next, update this code to write to Firestore.
+ It takes the output from the input CSV file and imports it into the legacy database. Next, update this code to write to Firestore.
+Open the file pet-theory/lab01/importTestData.js.
 
-    Open the file pet-theory/lab01/importTestData.js.
+ To reference the Firestore API via the application, you need to add the peer dependency to the existing codebase.
 
-        To reference the Firestore API via the application, you need to add the peer dependency to the existing codebase.
-
-    //its an exmple code and work 
-
-    Add the following Firestore dependency on line 4 of the file:
+    //its an exmple code and work
+    
+ Add the following Firestore dependency on line 4 of the file:
 
         const { Firestore } = require("@google-cloud/firestore");
 
-    Ensure that the top of the file looks like this:
+Ensure that the top of the file looks like this:
 
         const { promisify } = require("util");
         const parse = promisify(require("csv-parse"));
         const { readFile } = require("fs").promises;
         const { Firestore } = require("@google-cloud/firestore"); // add this
     
-    Add the following code underneath line 9, or the if (process.argv.length < 3) conditional:
+ Add the following code underneath line 9, or the if (process.argv.length < 3) conditional:
 
                 const db = new Firestore();
         function writeToFirestore(records) {
@@ -163,7 +163,7 @@ An example package.json is shown below:
         	return Promise.all(batchCommits);
         }
     
-    The above code snippet declares a new database object, which references the database created earlier in the lab. The function uses a batch process in which each of the records is processed in turn and sets a document reference based on the identifier added. At the end of the function, the batch content is written to the database.
+ The above code snippet declares a new database object, which references the database created earlier in the lab. The function uses a batch process in which each of the records is processed in turn and sets a document reference based on the identifier added. At the end of the function, the batch content is written to the database.
 
     Next, add logging for the application. To reference the Logging API via the application, add the peer dependency to the existing codebase. Add the line following line just below the other require statements at the top of the file:
         
