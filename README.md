@@ -32,7 +32,7 @@ project = qwiklabs-gcp-44776a13dea667a6
 
 step 3. Setting up Firestore in Google cloud 
 
-    1.In the Cloud Console, go to the Navigation menu and select Firestore.
+     1.In the Cloud Console, go to the Navigation menu and select Firestore.
 
     2.Click the Select Native Mode button.
 
@@ -52,15 +52,15 @@ Step 4. Writing Database Import code
 
         git clone https://github.com/rosera/product-name
 
-        As a reference, and consideration in importing data and code pre-installed.
+ As a reference, and consideration in importing data and code pre-installed.
     
     Then change your current working directory to lab01:
 
         cd pet-theory/lab01
 
-        In the directory you can see Products's package.json. This file lists the packages that your Node.js project depends on and makes your build reproducible, and therefore easier to share with others.
+ In the directory you can see Products's package.json. This file lists the packages that your Node.js project depends on and makes your build reproducible, and therefore easier to share with others.
 
-        An example package.json is shown below:
+An example package.json is shown below:
 
         {
 	        "name": "lab01",
