@@ -1,6 +1,11 @@
 # 📦 Importing Data to Firestore Database
 
-A hands-on guide and lab documentation for importing structured data into a Firestore database using Google Cloud Shell and Node.js.
+> A hands-on guide and lab documentation for importing structured data into a Firestore database using Google Cloud Shell and Node.js.
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Node](https://img.shields.io/badge/node.js-18.x-green.svg)
+![Firestore](https://img.shields.io/badge/database-Firestore-orange.svg)
+![Google Cloud](https://img.shields.io/badge/cloud-GCP-blue.svg)
 
 ---
 
