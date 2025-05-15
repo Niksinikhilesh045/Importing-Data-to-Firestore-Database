@@ -8,6 +8,41 @@
 ![Google Cloud](https://img.shields.io/badge/cloud-GCP-blue.svg)
 
 ---
+## 🔧 Tech Stack Used
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Cloud-Google_Cloud_Platform-blue?logo=googlecloud&logoColor=white" />
+  <img src="https://img.shields.io/badge/Database-Firestore-orange?logo=firebase" />
+  <img src="https://img.shields.io/badge/Runtime-Node.js-green?logo=node.js" />
+  <img src="https://img.shields.io/badge/CLI-gcloud-informational?logo=googlecloud" />
+  <img src="https://img.shields.io/badge/Logging-Google_Cloud_Logging-blueviolet?logo=googlecloud" />
+</p>
+
+**Cloud Platform**
+- Google Cloud Platform (GCP)
+  - Firestore (NoSQL database)
+  - Cloud Shell
+  - Cloud Logging
+  - `gcloud` CLI
+
+**Backend & Data Handling**
+- Node.js (server-side scripting)
+- npm (package management)
+
+**Key npm Packages**
+- `@google-cloud/firestore`
+- `@google-cloud/logging`
+- `csv-parse`
+- `faker`
+
+**Data Format**
+- CSV (Comma-Separated Values)
+
+**Command Line Tools**
+- Git
+- gcloud CLI
+
+---
 
 ## 🧭 Table of Contents
 
