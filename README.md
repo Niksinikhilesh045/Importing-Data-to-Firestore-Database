@@ -1,7 +1,6 @@
 # 📦 Importing Data to Firestore Database
 
-A hands-on guide for importing structured CSV data into Google Firestore using Node.js and Google Cloud Shell.
-
+A hands-on guide and lab documentation for importing structured data into a Firestore database using Google Cloud Shell and Node.js.
 ---
 
 ## 🧭 Table of Contents
@@ -27,13 +26,10 @@ Google Cloud Platform (GCP) provides tools for managing databases, deploying AI/
 
 In this lab, we will:
 
--Set up a Firestore instance.
-
--Write scripts to import CSV data into Firestore.
-
--Generate synthetic customer data.
-
--Enable logging using Google Cloud Logging.
+- Set up a Firestore instance.
+- Write scripts to import CSV data into Firestore.
+- Generate synthetic customer data.
+- Enable logging using Google Cloud Logging.
 
 ---
 
