@@ -123,8 +123,8 @@ On the other hand, Datastore Mode prioritises exceptional throughput, catering t
 ### 4. Clone Repository
 
 ```bash
-git clone https://github.com/rosera/product-name
-cd product-name/lab01
+git clone https://github.com/rosera/pet-theory
+cd pet-theory/lab01
 ```
 Inspect the `package.json` file for dependencies and scripts.
 
@@ -254,7 +254,17 @@ async function createTestData(recordCount) {
 }
 ```
 
-Run:
+Run the following command to configure your Project ID in Cloud Shell, replacing PROJECT_ID with your Qwiklabs Project ID:
+```bash
+gcloud config set project PROJECT_ID
+```
+
+Now, set the project ID as an environment variable:
+```bash
+PROJECT_ID=$(gcloud config get-value project)
+```
+
+Run the following command in Cloud Shell to create the file `customers_1000.csv`, which will contain 1000 records of test data:
 ```bash
 node createTestData.js 1000
 ```
