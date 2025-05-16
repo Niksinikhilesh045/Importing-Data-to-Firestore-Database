@@ -126,7 +126,7 @@ On the other hand, Datastore Mode prioritises exceptional throughput, catering t
 git clone https://github.com/rosera/product-name
 cd product-name/lab01
 ```
-Inspect the package.json file for dependencies and scripts.
+Inspect the `package.json` file for dependencies and scripts.
 
 ---
 
@@ -137,7 +137,7 @@ Install required libraries:
 npm install @google-cloud/firestore @google-cloud/logging csv-parse
 ```
 
-Your package.json should now include:
+Your `package.json` should now include:
 ```json
 "dependencies": {
   "@google-cloud/firestore": "^6.4.1",
@@ -150,7 +150,7 @@ Your package.json should now include:
 
 ### 6. Import CSV Data to Firestore
 
-Update importTestData.js:
+Update `importTestData.js`:
 
 🔹 Add Required Modules
 ```javascript
@@ -215,12 +215,12 @@ importCsv(process.argv[2]).catch(console.error);
 
 ### 7. Generate Test Data
 
-Install Faker:
+Install `Faker`:
 ```bash
 npm install faker@5.5.3
 ```
 
-Edit createTestData.js:
+Edit `createTestData.js`:
 
 🔹 Add Logging Setup
 ```javascript
