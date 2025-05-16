@@ -153,7 +153,7 @@ Your package.json should now include:
 Update importTestData.js:
 
 🔹 Add Required Modules
-```json
+```javascript
 const { promisify } = require("util");
 const parse = promisify(require("csv-parse"));
 const { readFile } = require("fs").promises;
@@ -162,7 +162,7 @@ const { Logging } = require("@google-cloud/logging");
 ```
 
 🔹 Initialise Firestore and Logging
-```json
+```javascript
 const db = new Firestore();
 
 const logName = "pet-theory-logs-importTestData";
@@ -172,7 +172,7 @@ const resource = { type: "global" };
 ```
 
 🔹 Firestore Batch Import Function
-```json
+```javascript
 function writeToFirestore(records) {
   const batchCommits = [];
   let batch = db.batch();
@@ -191,7 +191,7 @@ function writeToFirestore(records) {
 ```
 
 🔹 Main Import Function with Logging
-```json
+```javascript
 async function importCsv(csvFileName) {
   const fileContents = await readFile(csvFileName, "utf8");
   const records = await parse(fileContents, { columns: true });
