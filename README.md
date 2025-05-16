@@ -97,3 +97,119 @@ In this lab, we will:
 gcloud auth list
 gcloud config list project
 ```
+Output:
+
+```bash
+[core]
+project = <project_ID>
+```
+
+---
+
+### 3. Set Up Firestore
+
+1. Go to Navigation Menu > Firestore.
+2. Click Select Native Mode.
+3. Choose a region and click Create Database.
+
+📌 Certainly:
+
+Both modes offer high performance with robust consistency, although they exhibit distinct appearances and are tailored for specific usage scenarios.
+Native Mode excels in enabling numerous users to have concurrent access to shared data. It boasts real-time updates and a direct channel connecting your database to web or mobile clients.
+On the other hand, Datastore Mode prioritises exceptional throughput, catering to intensive reading and writing operations.
+
+---
+
+### 4. Clone Repository
+
+```bash
+git clone https://github.com/rosera/product-name
+cd product-name/lab01
+```
+Inspect the package.json file for dependencies and scripts.
+
+---
+
+### 5. Install Dependencies
+
+Install required libraries:
+```bash
+npm install @google-cloud/firestore @google-cloud/logging csv-parse
+```
+
+Your package.json should now include:
+```json
+"dependencies": {
+  "@google-cloud/firestore": "^6.4.1",
+  "@google-cloud/logging": "^10.3.1",
+  "csv-parse": "^4.4.5"
+}
+```
+
+---
+
+### 6. Import CSV Data to Firestore
+
+Update importTestData.js:
+
+🔹 Add Required Modules
+```json
+const { promisify } = require("util");
+const parse = promisify(require("csv-parse"));
+const { readFile } = require("fs").promises;
+const { Firestore } = require("@google-cloud/firestore");
+const { Logging } = require("@google-cloud/logging");
+```
+
+🔹 Initialise Firestore and Logging
+```json
+const db = new Firestore();
+
+const logName = "pet-theory-logs-importTestData";
+const logging = new Logging();
+const log = logging.log(logName);
+const resource = { type: "global" };
+```
+
+🔹 Firestore Batch Import Function
+```json
+function writeToFirestore(records) {
+  const batchCommits = [];
+  let batch = db.batch();
+  records.forEach((record, i) => {
+    const docRef = db.collection("customers").doc(record.email);
+    batch.set(docRef, record);
+    if ((i + 1) % 500 === 0) {
+      console.log(`Writing record ${i + 1}`);
+      batchCommits.push(batch.commit());
+      batch = db.batch();
+    }
+  });
+  batchCommits.push(batch.commit());
+  return Promise.all(batchCommits);
+}
+```
+
+🔹 Main Import Function with Logging
+```json
+async function importCsv(csvFileName) {
+  const fileContents = await readFile(csvFileName, "utf8");
+  const records = await parse(fileContents, { columns: true });
+  try {
+    await writeToFirestore(records);
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  }
+  console.log(`Wrote ${records.length} records`);
+
+  const success_message = `Success: importTestData - Wrote ${records.length} records`;
+  const entry = log.entry({ resource }, { message: success_message });
+  log.write([entry]);
+}
+
+importCsv(process.argv[2]).catch(console.error);
+```
+
+---
+
